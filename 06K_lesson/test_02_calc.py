@@ -18,7 +18,7 @@ def test_calc():
 
     # установка значения ожидания
     delay = "delay"
-    wait = "45"
+    wait = 45
     driver.find_element(By.ID, delay).clear()
     driver.find_element(By.ID, delay).send_keys(wait)
 
@@ -37,7 +37,8 @@ def test_calc():
         EC.text_to_be_present_in_element(
           (By.CSS_SELECTOR, '[class="screen"]'), "15"))
 
-    element = driver.find_element(By.CSS_SELECTOR, '[class="screen"]')
-    print(element.text)
+    rezult = driver.find_element(By.CSS_SELECTOR, '[class="screen"]').text
 
+    # Проверка "результат = 15"
+    assert float(rezult) == 15, "Результат должен быть равен 15"
     driver.quit()
