@@ -21,7 +21,7 @@ def test_calc():
     wait = 45
     driver.find_element(By.ID, delay).clear()
     driver.find_element(By.ID, delay).send_keys(wait)
-
+    sum = "15"
     for button in (["7", "+", "8", "="]):
         str = "//span[text()='" + button + "']"
         button_click = driver.find_element(By.XPATH, str)
@@ -35,10 +35,10 @@ def test_calc():
 
     WebDriverWait(driver, wait).until(
         EC.text_to_be_present_in_element(
-          (By.CSS_SELECTOR, '[class="screen"]'), "15"))
+          (By.CSS_SELECTOR, '[class="screen"]'), sum))
 
     rezult = driver.find_element(By.CSS_SELECTOR, '[class="screen"]').text
 
-    # Проверка "результат = 15"
-    assert float(rezult) == 15, "Результат должен быть равен 15"
+    # Проверка "результат = sum
+    assert rezult == sum, "Результат должен быть равен {sum)"
     driver.quit()
